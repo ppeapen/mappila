@@ -41,6 +41,7 @@ header.site-header {
   padding: 1.2rem 1rem;
   text-align: center;
 }
+.eng {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;}
 
 header.site-header h1 {
   margin: 0 0 .25rem;
@@ -171,7 +172,13 @@ main {
   margin: 0 0 1.5rem;
 }
 
-.section-heading {
+summary {
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-stretch:90%;
+}
+
+.section-heading, .intro-box h3 {
   color: var(--accent-soft);
   font-size: 1.25rem;
   font-weight: 400;
@@ -179,7 +186,7 @@ main {
   margin: 1.6rem 0 .4rem;
 }
 
-p.usfm-p, p.usfm-m, p.usfm-nb, p.usfm-pc, p.usfm-q1, p.usfm-q2,p.usfm-li1,p.usfm-li2 {
+.intro-box p, p.usfm-p, p.usfm-m, p.usfm-nb, p.usfm-pc, p.usfm-q1, p.usfm-q2,p.usfm-li1,p.usfm-li2 {
   font-family: 'Malini';
   font-size: 1.2rem;
   font-weight: 300;
