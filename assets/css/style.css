@@ -9,17 +9,17 @@
 :root {
   --ink: #2b2118;
   --ink-soft: #5a4c3d;
-  --paper: #fbf6ec;
+  --paper: #F5FAF5; /*#fbf6ec;*/
   --paper-card: #ffffff;
-  --accent: #8a3b12;
-  --accent-soft: #c98a52;
-  --border: #e4d7c0;
+  --accent: #00720B; /*#8a3b12;*/
+  --accent-soft: #2b2118; /*#c98a52;*/
+  --border: #78BB78; /*#e4d7c0;*/
   --max-width: 780px;
 }
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 18px;}
 
 body {
   margin: 0;
@@ -29,11 +29,11 @@ body {
   /* 'Malini' comes from the imported stylesheet above; keep sensible fallbacks
      in case the remote font fails to load. */
   font-family: 'Malini', 'Noto Sans Malayalam', Tahoma, sans-serif;
-  font-size: 19px;
   line-height: 1.9;
 }
 
 a { color: var(--accent); }
+a:link {text-decoration: none;}
 
 header.site-header {
   background: var(--paper-card);
@@ -44,9 +44,12 @@ header.site-header {
 
 header.site-header h1 {
   margin: 0 0 .25rem;
-  font-size: 1.6rem;
+  font-stretch: 90%;
+  font-size: 2rem;
   color: var(--accent);
 }
+
+h2 {font-size: 1.8rem}
 
 header.site-header p.subtitle {
   margin: 0;
@@ -124,13 +127,15 @@ main {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+   justify-content: center;
   gap: .5rem;
   position: sticky;
   top: 0;
   background: var(--paper);
   padding: .6rem 0;
-  border-bottom: 1px solid var(--border);
+  /*border-bottom: 1px solid var(--border);*/
   z-index: 5;
+  font-size: 0.8rem;
 }
 
 .reader-toolbar select,
@@ -161,17 +166,27 @@ main {
 .chapter-number {
   text-align: center;
   color: var(--ink-soft);
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+  font-stretch: 90%;
   margin: 0 0 1.5rem;
 }
 
 .section-heading {
   color: var(--accent-soft);
-  font-size: 1.05rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-stretch:90%;
   margin: 1.6rem 0 .4rem;
 }
 
-p.usfm-p, p.usfm-m, p.usfm-nb, p.usfm-pc {
+p.usfm-p, p.usfm-m, p.usfm-nb, p.usfm-pc, p.usfm-q1, p.usfm-q2,p.usfm-li1,p.usfm-li2 {
+  font-family: 'Malini';
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-stretch:  95%;
+  font-optical-sizing: auto;
+  line-height: 1.45 !important;
+  text-indent: 0;
   margin: 0 0 1rem;
   text-align: justify;
 }
@@ -179,6 +194,7 @@ p.usfm-p, p.usfm-m, p.usfm-nb, p.usfm-pc {
 p.usfm-q1 { margin: .2rem 0 .2rem 1.5rem; }
 p.usfm-q2 { margin: .2rem 0 .2rem 3rem; }
 p.usfm-li1 { margin: .2rem 0 .2rem 1.5rem; }
+
 
 sup.verse-num {
   color: var(--accent);

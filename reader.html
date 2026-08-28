@@ -3,32 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>വായന | Mappila Malayalam NT</title>
+<title>പരിശുദ്ധ ഇഞ്ജിൽ | Mappila Malayalam NT</title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
 <header class="site-header">
-  <h1><a href="index.html" style="text-decoration:none;color:inherit;">Mappila Malayalam NT</a></h1>
-  <p class="subtitle" id="bookSubtitle">&nbsp;</p>
+  <h1><a href="index.html" style="text-decoration:none;color:inherit;">പുതിയനിയമം</a></h1>
+  <p class="subtitle">മാപ്പിള മലയാള വിവർത്തനം: <span id="bookSubtitle">&nbsp;</span></p>
+  
 </header>
 
 <main>
   <div class="reader-toolbar">
-    <a href="index.html" title="പുസ്തകങ്ങളിലേക്ക് മടങ്ങുക">&larr; പുസ്തകങ്ങൾ</a>
+    <a href="index.html" title="പുസ്തകങ്ങളിലേക്ക് മടങ്ങുക">🏚️ &larr;</a>
     <select id="chapterSelect" aria-label="അധ്യായം തിരഞ്ഞെടുക്കുക"></select>
-    <button id="prevBtn">&larr; മുൻപ്</button>
-    <button id="nextBtn">അടുത്തത് &rarr;</button>
+    <!--These buttons were moved to the bottom of the reader page
+    <button id="prevBtn">&larr; മുൻപുള്ളത്</button>
+    <button id="nextBtn">അടുത്തത് &rarr;</button>-->
   </div>
 
   <div id="content">
-    <p class="loading">വായിക്കുന്നു...</p>
+    <p class="loading">ഒരു നിമിഷം ...</p>
+  </div>
+
+  <div style="height:60px"></div>
+  <div class="reader-toolbar">
+    <button id="prevBtn">&larr; മുൻപുള്ളത്</button> <span style="font-size:1.1rem">അദ്ധ്യായം</span> 
+    <button id="nextBtn">അടുത്തത് &rarr;</button>
   </div>
 </main>
 
 <footer class="site-footer">
-  Mappila Malayalam Version &middot; source files in
-  <a href="https://github.com/ppeapen/mappila">github.com/ppeapen/mappila</a>
+   Source files in
+  <a href="https://github.com/ppeapen/mappila">Mappila Malayalam Version</a>
 </footer>
 
 <script src="assets/js/usfm-parser.js"></script>
