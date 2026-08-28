@@ -1,0 +1,244 @@
+/* ==========================================================================
+   Mappila Malayalam NT — shared stylesheet
+   Used by both index.html (book chooser) and reader.html (chapter viewer)
+   ========================================================================== */
+
+/* Required Malayalam webfont for body text, per project spec. */
+@import url('https://smc.org.in/fonts/malini.css');
+
+:root {
+  --ink: #2b2118;
+  --ink-soft: #5a4c3d;
+  --paper: #fbf6ec;
+  --paper-card: #ffffff;
+  --accent: #8a3b12;
+  --accent-soft: #c98a52;
+  --border: #e4d7c0;
+  --max-width: 780px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  /* 'Malini' comes from the imported stylesheet above; keep sensible fallbacks
+     in case the remote font fails to load. */
+  font-family: 'Malini', 'Noto Sans Malayalam', Tahoma, sans-serif;
+  font-size: 19px;
+  line-height: 1.9;
+}
+
+a { color: var(--accent); }
+
+header.site-header {
+  background: var(--paper-card);
+  border-bottom: 1px solid var(--border);
+  padding: 1.2rem 1rem;
+  text-align: center;
+}
+
+header.site-header h1 {
+  margin: 0 0 .25rem;
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+
+header.site-header p.subtitle {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 4rem;
+}
+
+/* ---------- index.html: book chooser ---------- */
+
+.testament-group h2 {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .4rem;
+  margin-top: 2rem;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: .75rem;
+  margin: 1rem 0;
+}
+
+.book-card {
+  display: block;
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .9rem .75rem;
+  text-decoration: none;
+  color: var(--ink);
+  text-align: center;
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+.book-card .mal-name {
+  display: block;
+  font-size: 1.15rem;
+}
+
+.book-card .eng-name {
+  display: block;
+  font-size: .75rem;
+  color: var(--ink-soft);
+  margin-top: .15rem;
+  font-family: Tahoma, sans-serif;
+}
+
+.book-card.coming-soon {
+  cursor: not-allowed;
+  opacity: .45;
+  background: transparent;
+  pointer-events: none;
+}
+
+.book-card.coming-soon .eng-name::after {
+  content: " (coming soon)";
+}
+
+/* ---------- reader.html: chapter viewer ---------- */
+
+.reader-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  padding: .6rem 0;
+  border-bottom: 1px solid var(--border);
+  z-index: 5;
+}
+
+.reader-toolbar select,
+.reader-toolbar button {
+  font-size: 1rem;
+  padding: .35rem .6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--paper-card);
+  color: var(--ink);
+}
+
+.reader-toolbar button {
+  cursor: pointer;
+}
+
+.reader-toolbar button:disabled {
+  opacity: .35;
+  cursor: default;
+}
+
+.book-title {
+  text-align: center;
+  color: var(--accent);
+  margin: 1rem 0 .25rem;
+}
+
+.chapter-number {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  margin: 0 0 1.5rem;
+}
+
+.section-heading {
+  color: var(--accent-soft);
+  font-size: 1.05rem;
+  margin: 1.6rem 0 .4rem;
+}
+
+p.usfm-p, p.usfm-m, p.usfm-nb, p.usfm-pc {
+  margin: 0 0 1rem;
+  text-align: justify;
+}
+
+p.usfm-q1 { margin: .2rem 0 .2rem 1.5rem; }
+p.usfm-q2 { margin: .2rem 0 .2rem 3rem; }
+p.usfm-li1 { margin: .2rem 0 .2rem 1.5rem; }
+
+sup.verse-num {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: .75em;
+  margin-inline-start: .2em;
+  margin-inline-end: .1em;
+  user-select: none;
+}
+
+/* generic inline-formatting spans produced by the parser, e.g.
+   \nd..\nd*, \wj..\wj*, \add..\add*, \xt..\xt* -- keyed by marker name */
+.usfm-wj { color: #a33; }                 /* words of Jesus */
+.usfm-nd { font-variant: small-caps; }     /* divine name     */
+.usfm-add { font-style: italic; }          /* translator addition */
+.usfm-xt { font-style: italic; color: var(--ink-soft); text-decoration: none; }
+
+sup.fn-ref {
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.footnotes {
+  margin-top: 2.5rem;
+  padding-top: .75rem;
+  border-top: 1px dashed var(--border);
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
+
+.footnotes li { margin-bottom: .5rem; }
+
+.intro-box {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.intro-box h2 { margin-top: 0; color: var(--accent); }
+
+.intro-box summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.loading, .error-box {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 3rem 1rem;
+}
+
+.error-box { color: #a33; }
+
+footer.site-footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: .8rem;
+  padding: 2rem 1rem;
+}

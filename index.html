@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mappila Malayalam New Testament</title>
+<meta name="description" content="Mappila Malayalam version of the New Testament — read online.">
+
+<!--
+  ===========================================================================
+  MAPPILA MALAYALAM NT — index.html
+  ===========================================================================
+  This page just builds a menu of NT books from books.json and links each
+  available one to reader.html, which does the actual USFM -> HTML rendering
+  (see assets/js/usfm-parser.js and assets/js/reader.js).
+
+  TO ADD A NEW BOOK ONCE ITS .sfm FILE IS READY:
+    1. Upload the .sfm file into the /books folder of this repo.
+       Keep the filename EXACTLY as it appears in books.json (GitHub Pages
+       is served from a case-sensitive filesystem, unlike Windows).
+    2. Open books.json and, for that book's entry, set:  "available": true
+       (the "file" path already points at the expected filename).
+    3. Commit + push. No other change is needed — this page, reader.html
+       and the parser are all book-agnostic.
+
+  That's it: nothing in index.html itself needs to change to add a book.
+  You'd only touch this file's HTML/CSS if you wanted to change the page
+  layout itself (e.g. add a search box or a different grouping).
+  ===========================================================================
+-->
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1>പുതിയ നിയമം</h1>
+  <p class="subtitle">Mappila Malayalam Version &middot; New Testament</p>
+</header>
+
+<main>
+  <p>
+    വായിക്കാൻ ഒരു പുസ്തകം തിരഞ്ഞെടുക്കുക.
+    <br>
+    <small>Choose a book below to start reading. Books greyed out are not
+    yet available in this format.</small>
+  </p>
+
+  <div id="bookList">
+    <p class="loading">പുസ്തകങ്ങളുടെ പട്ടിക ലഭ്യമാക്കുന്നു...</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  Mappila Malayalam Version &middot; source files hosted at
+  <a href="https://github.com/ppeapen/mappila">github.com/ppeapen/mappila</a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // The four Gospels get their own heading; everything else is grouped
+  // together as "the rest of the New Testament". Purely cosmetic — add
+  // more groups here (e.g. "Pauline Epistles") if you want finer sections
+  // once more books are online.
+  const GOSPEL_CODES = new Set(['MAT', 'MRK', 'LUK', 'JHN']);
+
+  fetch('books.json')
+    .then(res => res.json())
+    .then(data => renderBooks(data.books))
+    .catch(err => {
+      document.getElementById('bookList').innerHTML =
+        '<p class="error-box">പുസ്തകങ്ങളുടെ പട്ടിക ലോഡ് ചെയ്യാനായില്ല (books.json). ' +
+        String(err.message || err) + '</p>';
+    });
+
+  function renderBooks(books) {
+    books.sort((a, b) => a.usfmNum - b.usfmNum);
+
+    const gospels = books.filter(b => GOSPEL_CODES.has(b.code));
+    const rest = books.filter(b => !GOSPEL_CODES.has(b.code));
+
+    const html =
+      section('സുവിശേഷങ്ങൾ', 'Gospels', gospels) +
+      section('മറ്റ് പുസ്തകങ്ങൾ', 'Rest of the New Testament', rest);
+
+    document.getElementById('bookList').innerHTML = html;
+  }
+
+  function section(titleMal, titleEng, books) {
+    if (!books.length) return '';
+    return (
+      `<div class="testament-group">` +
+      `<h2>${titleMal} <small style="font-weight:normal;">(${titleEng})</small></h2>` +
+      `<div class="book-grid">` +
+      books.map(bookCard).join('') +
+      `</div></div>`
+    );
+  }
+
+  function bookCard(book) {
+    const malSpan = `<span class="mal-name">${book.name}</span>`;
+    const engSpan = `<span class="eng-name">${book.engName}</span>`;
+
+    if (book.available) {
+      const href = `reader.html?book=${encodeURIComponent(book.file)}&name=${encodeURIComponent(book.name)}`;
+      return `<a class="book-card" href="${href}">${malSpan}${engSpan}</a>`;
+    }
+    // Not available yet: render as a disabled-looking, non-clickable card.
+    return `<span class="book-card coming-soon" aria-disabled="true">${malSpan}${engSpan}</span>`;
+  }
+})();
+</script>
+
+</body>
+</html>

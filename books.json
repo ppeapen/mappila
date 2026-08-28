@@ -1,0 +1,36 @@
+{
+  "//": "Catalog of New Testament books for the Mappila Malayalam site.",
+  "//1": "Add a new entry (or flip 'available' to true) whenever a new .sfm file is uploaded to /books.",
+  "//2": "'file' must exactly match the filename in /books (GitHub Pages is case-sensitive!).",
+  "//3": "'usfmNum' is the standard USFM book number, used only to keep entries sorted in NT order.",
+
+  "books": [
+    { "usfmNum": 41, "code": "MAT", "name": "മത്തായി",  "engName": "Matthew", "file": "books/41MATMMC.sfm", "available": false },
+    { "usfmNum": 42, "code": "MRK", "name": "മർക്കൊസ്", "engName": "Mark",    "file": "books/42MRKMMC.sfm", "available": false },
+    { "usfmNum": 43, "code": "LUK", "name": "ലൂക്കൊസ്",  "engName": "Luke",    "file": "books/43LUKMMC.sfm", "available": true  },
+    { "usfmNum": 44, "code": "JHN", "name": "യോഹന്നാൻ",  "engName": "John",    "file": "books/44JHNMMC.sfm", "available": false },
+    { "usfmNum": 45, "code": "ACT", "name": "പ്രവൃത്തികൾ",     "engName": "Acts",            "file": "books/45ACTMMC.sfm", "available": false },
+    { "usfmNum": 46, "code": "ROM", "name": "റോമർ",             "engName": "Romans",          "file": "books/46ROMMMC.sfm", "available": false },
+    { "usfmNum": 47, "code": "1CO", "name": "1 കൊരിന്ത്യർ",      "engName": "1 Corinthians",   "file": "books/471COMMC.sfm", "available": false },
+    { "usfmNum": 48, "code": "2CO", "name": "2 കൊരിന്ത്യർ",      "engName": "2 Corinthians",   "file": "books/482COMMC.sfm", "available": false },
+    { "usfmNum": 49, "code": "GAL", "name": "ഗലാത്യർ",          "engName": "Galatians",       "file": "books/49GALMMC.sfm", "available": false },
+    { "usfmNum": 50, "code": "EPH", "name": "എഫെസ്യർ",          "engName": "Ephesians",       "file": "books/50EPHMMC.sfm", "available": false },
+    { "usfmNum": 51, "code": "PHP", "name": "ഫിലിപ്പിയർ",       "engName": "Philippians",     "file": "books/51PHPMMC.sfm", "available": false },
+    { "usfmNum": 52, "code": "COL", "name": "കൊലൊസ്യർ",         "engName": "Colossians",      "file": "books/52COLMMC.sfm", "available": false },
+    { "usfmNum": 53, "code": "1TH", "name": "1 തെസ്സലൊനീക്യർ",   "engName": "1 Thessalonians", "file": "books/531THMMC.sfm", "available": false },
+    { "usfmNum": 54, "code": "2TH", "name": "2 തെസ്സലൊനീക്യർ",   "engName": "2 Thessalonians", "file": "books/542THMMC.sfm", "available": false },
+    { "usfmNum": 55, "code": "1TI", "name": "1 തിമൊഥെയൊസ്",     "engName": "1 Timothy",       "file": "books/551TIMMC.sfm", "available": false },
+    { "usfmNum": 56, "code": "2TI", "name": "2 തിമൊഥെയൊസ്",     "engName": "2 Timothy",       "file": "books/562TIMMC.sfm", "available": false },
+    { "usfmNum": 57, "code": "TIT", "name": "തീത്തൊസ്",         "engName": "Titus",           "file": "books/57TITMMC.sfm", "available": false },
+    { "usfmNum": 58, "code": "PHM", "name": "ഫിലേമോൻ",          "engName": "Philemon",        "file": "books/58PHMMMC.sfm", "available": false },
+    { "usfmNum": 59, "code": "HEB", "name": "എബ്രായർ",          "engName": "Hebrews",         "file": "books/59HEBMMC.sfm", "available": false },
+    { "usfmNum": 60, "code": "JAS", "name": "യാക്കോബ്",         "engName": "James",           "file": "books/60JASMMC.sfm", "available": false },
+    { "usfmNum": 61, "code": "1PE", "name": "1 പത്രൊസ്",        "engName": "1 Peter",         "file": "books/611PEMMC.sfm", "available": false },
+    { "usfmNum": 62, "code": "2PE", "name": "2 പത്രൊസ്",        "engName": "2 Peter",         "file": "books/622PEMMC.sfm", "available": false },
+    { "usfmNum": 63, "code": "1JN", "name": "1 യോഹന്നാൻ",       "engName": "1 John",          "file": "books/631JNMMC.sfm", "available": false },
+    { "usfmNum": 64, "code": "2JN", "name": "2 യോഹന്നാൻ",       "engName": "2 John",          "file": "books/642JNMMC.sfm", "available": false },
+    { "usfmNum": 65, "code": "3JN", "name": "3 യോഹന്നാൻ",       "engName": "3 John",          "file": "books/653JNMMC.sfm", "available": false },
+    { "usfmNum": 66, "code": "JUD", "name": "യൂദാ",             "engName": "Jude",            "file": "books/66JUDMMC.sfm", "available": false },
+    { "usfmNum": 67, "code": "REV", "name": "വെളിപ്പാട്",       "engName": "Revelation",      "file": "books/67REVMMC.sfm", "available": false }
+  ]
+}
