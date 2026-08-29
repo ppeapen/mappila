@@ -59,7 +59,7 @@
 
     // Populate the chapter dropdown once.
     chapterSelect.innerHTML = chapters
-      .map(ch => `<option value="${ch.number}">അധ്യായം ${ch.number}</option>`)
+      .map(ch => `<option value="${ch.number}">അദ്ധ്യായം ${ch.number}</option>`)
       .join('');
 
     if (chapterNum < 1 || chapterNum > chapters.length) chapterNum = 1;
@@ -92,7 +92,7 @@
       }
 
       html += `<h2 class="book-title">${bookTitle}</h2>`;
-      html += `<p class="chapter-number">അധ്യായം ${ch.number}</p>`;
+      html += `<p class="chapter-number">അദ്ധ്യായം ${ch.number}</p>`;
       html += ch.html;
 
       contentEl.innerHTML = html;
