@@ -128,7 +128,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-   justify-content: center;
+  justify-content: center;
   gap: .5rem;
   position: sticky;
   top: 0;
@@ -202,6 +202,7 @@ summary {
 .intro-box p, p.usfm-p, p.usfm-m, p.usfm-nb, p.usfm-pc {
   text-align: justify;
   hyphens: auto;
+  -webkit-hyphenate-character: '';
   overflow-wrap: break-word;
 }
 
