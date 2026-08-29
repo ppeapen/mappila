@@ -100,7 +100,7 @@ main {
 
 .book-card .mal-name {
   display: block;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
 }
 
 .book-card .eng-name {
@@ -203,7 +203,7 @@ summary {
   text-align: justify;
   hyphens: auto;
   -webkit-hyphenate-character: '';
-  overflow-wrap: break-word;
+  /*overflow-wrap: break-word;*/
 }
 
 p.usfm-q1 { margin: .2rem 0 .2rem 1.5rem; }
