@@ -193,12 +193,10 @@ summary {
   font-size: 1.05em;
   font-weight: 400;
   font-stretch:  95%;
-
   font-optical-sizing: auto;
   line-height: 1.45 !important;
   text-indent: 0;
   margin: 0 0 1rem;
-  
 }
 
 .intro-box p, p.usfm-p, p.usfm-m, p.usfm-nb, p.usfm-pc {
