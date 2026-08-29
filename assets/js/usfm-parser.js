@@ -221,6 +221,12 @@
         const spaceIdx = text.indexOf(' ');
         const num = spaceIdx === -1 ? text : text.slice(0, spaceIdx);
         const rest = spaceIdx === -1 ? '' : text.slice(spaceIdx + 1);
+        // The tokenizer trims whitespace off every token, so any trailing
+        // space typed in the .sfm source at the end of a verse is lost
+        // before we ever get here. Re-introduce the gap ourselves: put a
+        // real space before every verse number except the first one in a
+        // block (where a leading space would look wrong).
+        if (currentBuf.trim() !== '') currentBuf += ' ';
         currentBuf += `<sup class="verse-num" id="v${currentChapter ? currentChapter.number : 0}-${num}">${num}</sup>`;
         currentBuf += escapeHtml(rest);
         continue;
