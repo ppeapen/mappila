@@ -180,18 +180,20 @@ summary {
 
 .section-heading, .intro-box h3 {
   color: var(--accent-soft);
-  font-size: 1.2rem;
-  font-weight: 400;
+  font-size: 1.25rem;
+  font-weight: 300;
   font-stretch:90%;
-  margin: 1.6rem 0 .4rem;
+  font-style: oblique 8deg;
+  margin: 2rem 0 .4rem;
   line-height: 1.3;
 }
 
 .intro-box p, p.usfm-p, p.usfm-m, p.usfm-nb, p.usfm-pc, p.usfm-q1, p.usfm-q2,p.usfm-li1,p.usfm-li2 {
   font-family: 'Malini';
-  font-size: 1.1rem;
-  font-weight: 300;
+  font-size: 1.05em;
+  font-weight: 400;
   font-stretch:  95%;
+
   font-optical-sizing: auto;
   line-height: 1.45 !important;
   text-indent: 0;
