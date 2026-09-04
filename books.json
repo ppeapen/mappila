@@ -5,7 +5,7 @@
   "//3": "'usfmNum' is the standard USFM book number, used only to keep entries sorted in NT order.",
 
   "books": [
-    { "usfmNum": 41, "code": "MAT", "name": "മത്തായി",  "engName": "Matthew", "file": "books/41MATMMC.sfm", "available": false },
+    { "usfmNum": 41, "code": "MAT", "name": "മത്തായി",  "engName": "Matthew", "file": "books/41MATMMC.sfm", "available": true },
     { "usfmNum": 42, "code": "MRK", "name": "മർക്കൊസ്", "engName": "Mark",    "file": "books/42MRKMMC.sfm", "available": false },
     { "usfmNum": 43, "code": "LUK", "name": "ലൂക്കൊസ്",  "engName": "Luke",    "file": "books/43LUKMMC.sfm", "available": true  },
     { "usfmNum": 44, "code": "JHN", "name": "യോഹന്നാൻ",  "engName": "John",    "file": "books/44JHNMMC.sfm", "available": false },
