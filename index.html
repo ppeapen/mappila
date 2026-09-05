@@ -56,8 +56,8 @@
 <body>
 
 <header class="site-header">
-  <h1>പരിശുദ്ധ ഇഞ്ജീൽ</h1>
-  <p class="subtitle eng">Muslim Malayalam Version &middot; New Testament</p>
+  <h1>പരിശുദ്ധ ഇഞ്ചീൽ</h1>
+  <p class="subtitle eng">മുസ്ലീം മലയാള വിവർത്തനം</p>
 </header>
 
 <main>
@@ -105,11 +105,13 @@
 (function () {
   'use strict';
 
-  // The four Gospels get their own heading; everything else is grouped
-  // together as "the rest of the New Testament". Purely cosmetic — add
-  // more groups here (e.g. "Pauline Epistles") if you want finer sections
-  // once more books are online.
-  const GOSPEL_CODES = new Set(['MAT', 'MRK', 'LUK', 'JHN']);
+  // Previously books were split into two groups ("Gospels" and "Rest of
+  // the New Testament") using a GOSPEL_CODES set. That grouping has been
+  // removed per request -- all books are now shown in a single flat grid,
+  // sorted in standard New Testament (USFM) book order. If a grouped view
+  // is ever wanted again, filter `books` into subsets inside renderBooks()
+  // and build one section (heading + grid) per subset, the way the old
+  // code did.
 
   fetch('books.json')
     .then(res => res.json())
@@ -121,27 +123,14 @@
     });
 
   function renderBooks(books) {
+    // Keep books in standard New Testament order (Matthew..Revelation),
+    // regardless of the order they appear in books.json.
     books.sort((a, b) => a.usfmNum - b.usfmNum);
 
-    const gospels = books.filter(b => GOSPEL_CODES.has(b.code));
-    const rest = books.filter(b => !GOSPEL_CODES.has(b.code));
-
-    const html =
-      section('സുവിശേഷങ്ങൾ', 'Gospels', gospels) +
-      section('മറ്റ് പുസ്തകങ്ങൾ', 'Rest of the New Testament', rest);
+    // Single flat grid -- no section grouping/headings.
+    const html = `<div class="book-grid">${books.map(bookCard).join('')}</div>`;
 
     document.getElementById('bookList').innerHTML = html;
-  }
-
-  function section(titleMal, titleEng, books) {
-    if (!books.length) return '';
-    return (
-      `<div class="testament-group">` +
-      `<h2>${titleMal} <small style="font-weight:normal;">(${titleEng})</small></h2>` +
-      `<div class="book-grid">` +
-      books.map(bookCard).join('') +
-      `</div></div>`
-    );
   }
 
   function bookCard(book) {
