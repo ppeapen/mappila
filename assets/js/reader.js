@@ -53,7 +53,7 @@
   }
 
   function render(parsed) {
-    const { meta, introHtml, chapters } = parsed;
+    const { meta, introHtml, introTitle, chapters } = parsed;
     const bookTitle = meta.h || meta.toc2 || meta.mt1 || bookLabel || '';
     subtitleEl.textContent = bookTitle;
 
@@ -88,7 +88,8 @@
 
       // Show book intro / front matter only above chapter 1.
       if (chapterNum === 1 && introHtml) {
-        html += `<details class="intro-box"><summary>ആമുഖം</summary>${introHtml}</details>`;
+        const label = introTitle ? escapeHtml(introTitle) : 'ആമുഖം';
+        html += `<details class="intro-box"><summary>${label}</summary>${introHtml}</details>`;
       }
 
       html += `<h2 class="book-title">${bookTitle}</h2>`;

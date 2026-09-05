@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mappila Malayalam New Testament</title>
-    <meta name="description" content="Mappila Malayalam version of the New Testament — read online.">
+    <title>Muslim Malayalam New Testament</title>
+    <meta name="description" content="Muslim Malayalam version of the New Testament — read online.">
     <!--PAGE LINKS: CURRENT and ALTERNATE-->
     <link rel="canonical" href="https://ppeapen.github.io/mappila/" />
     <link rel="alternate" href="https://ppeapen.github.io/mappila/" hreflang="ml" />
     <!--Basic SEO Meta Tags-->
-    <meta name="title" content="Mappila Malayalam Version of New Testament" />
+    <meta name="title" content="Muslim Malayalam Version of New Testament" />
     <meta name="copyright" content="Copyright 2026">
     <meta name="date" content="June 1, 2026" />
     <meta name="revised" content="Saturday, Aug 29, 2026, 5:15 am" />
@@ -18,11 +18,11 @@
     <meta name="description" content="ഈസ-അൽ-മസീഹിന്റെ പരിശുദ്ധ ഇഞ്ചീൽ" />
     <meta name="robots" content="index, follow, max-snippet:-1, noarchive" />
     <!--OpenGraph Meta Tags: Facebook-->
-    <meta property="og:title" content="Mappila Malayalam Version of New Testament" />
+    <meta property="og:title" content="Muslim Malayalam Version of New Testament" />
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://ppeapen.github.io/mappila/assets/img/og_ramadan-lantern.webp"> 
     <meta name="og:url" content="https://ppeapen.github.io/mappila/" />
-    <meta name="og:site_name" content="Mappila Malayalam NT">
+    <meta name="og:site_name" content="Muslim Malayalam NT">
     <meta property="og:description" content="ഈസ-അൽ-മസീഹിന്റെ പരിശുദ്ധ ഇഞ്ചീൽ" />
 <!--
   ===========================================================================
@@ -56,8 +56,8 @@
 <body>
 
 <header class="site-header">
-  <h1>പുതിയ നിയമം</h1>
-  <p class="subtitle eng">Mappila Malayalam Version &middot; New Testament</p>
+  <h1>പരിശുദ്ധ ഇഞ്ജീൽ</h1>
+  <p class="subtitle eng">Muslim Malayalam Version &middot; New Testament</p>
 </header>
 
 <main>
@@ -68,8 +68,20 @@
     yet available in this format.</span></small>
   </p>
 
+  <!--
+    New-Testament-wide preface, loaded from books/40MNTPRE.sfm by
+    assets/js/nt-preface.js (see that file to change the source path).
+    Uses the same .intro-box styling as the per-book preface in reader.html.
+  -->
+  <details class="intro-box" id="ntPreface">
+    <summary>ആമുഖം</summary>
+    <div class="intro-box-body">
+      <p class="loading">ഒരു നിമിഷം ...</p>
+    </div>
+  </details>
+
   <div id="bookList">
-    <p class="loading">പുസ്തകങ്ങളുടെ പട്ടിക ലഭ്യമാക്കുന്നു...</p>
+    <p class="loading">ഒരു നിമിഷം ...</p>
   </div>
 
   <div style="height:100px"></div>
@@ -83,10 +95,12 @@
 </main>
 
 <footer class="site-footer eng">
-   Source files hosted at
-  <a href="https://github.com/ppeapen/mappila">Mappila Malayalam Version</a>
+   Source files hosted on
+  <a href="https://github.com/ppeapen/mappila">Github</a>
 </footer>
 
+<script src="assets/js/usfm-parser.js"></script>
+<script src="assets/js/nt-preface.js"></script>
 <script>
 (function () {
   'use strict';

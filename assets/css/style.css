@@ -226,6 +226,7 @@ sup.verse-num {
 .usfm-nd { font-variant: small-caps; }     /* divine name     */
 .usfm-add { font-style: italic; }          /* translator addition */
 .usfm-xt { font-style: italic; color: var(--ink-soft); text-decoration: none; }
+.usfm-qt { font-style: italic; color: var(--ink-soft); }         /* quoted scripture text */
 
 sup.fn-ref {
   color: var(--accent);

@@ -49,6 +49,13 @@
   // Markers describing the book title / introduction (front matter).
   const META_MARKERS = new Set(['id', 'ide', 'h', 'toc1', 'toc2', 'toc3', 'mt1', 'mt2', 'mt3']);
   const INTRO_MARKERS = new Set(['imt', 'imt1', 'imt2', 'ip', 'iot', 'io1', 'io2', 'is', 'is1']);
+  // Of the intro markers, these are "title-like" -- whichever one appears
+  // FIRST in the file becomes the label on the collapsible box (introTitle)
+  // instead of being rendered inline, so it isn't shown twice (once as the
+  // box's summary, once again as the first line of the expanded content).
+  // Later occurrences (e.g. an \iot "Contents" heading further down, after
+  // an \imt "Preface" title at the top) still render inline as normal.
+  const TITLE_MARKERS = new Set(['imt', 'imt1', 'imt2', 'iot']);
 
   function escapeHtml(s) {
     return s
@@ -92,6 +99,7 @@
 
     const meta = {};
     let introHtml = '';
+    let introTitle = ''; // first title-like intro marker (\imt / \iot); used as the box label instead of being duplicated inline
     const chapters = [];
 
     let mode = 'meta'; // 'meta' -> 'intro' -> 'body'
@@ -105,6 +113,20 @@
     let footnoteCounter = 0;
 
     const inlineStack = [];    // generic open inline markers, e.g. ['nd']
+
+    // Some source files open an inline marker (e.g. \qt, \nd) without ever
+    // closing it (no matching \qt*, \nd*, ...). Rather than leave a <span>
+    // open indefinitely -- which is fragile even though browsers usually
+    // recover from it -- force-close any still-open inline spans whenever
+    // we hit a block/chapter/section boundary.
+    function closeInlineSpans() {
+      while (inlineStack.length) {
+        inlineStack.pop();
+        if (insideFootnote) footnoteBuf += '</span>';
+        else if (mode === 'intro') introHtml += '</span>';
+        else currentBuf += '</span>';
+      }
+    }
 
     function activeBuf(text) {
       // Route plain text to wherever we currently are.
@@ -171,13 +193,19 @@
 
       // ---- front matter / book metadata ---------------------------------
       if (META_MARKERS.has(marker)) {
+        closeInlineSpans();
         meta[marker] = text;
         mode = 'meta';
         continue;
       }
       if (INTRO_MARKERS.has(marker)) {
+        closeInlineSpans();
         mode = 'intro';
-        if (marker === 'ip' || marker === 'imt' || marker === 'imt1' || marker === 'imt2') {
+        if (TITLE_MARKERS.has(marker) && introTitle === '') {
+          // First title-like marker in the file: use it as the box label,
+          // don't also render it as a line inside the body.
+          introTitle = text;
+        } else if (marker === 'ip' || marker === 'imt' || marker === 'imt1' || marker === 'imt2') {
           introHtml += `<p>${escapeHtml(text)}</p>`;
         } else if (marker === 'iot') {
           introHtml += `<h3>${escapeHtml(text)}</h3>`;
@@ -191,6 +219,7 @@
 
       // ---- chapter boundary ----------------------------------------------
       if (marker === 'c') {
+        closeInlineSpans();
         flushChapter();
         mode = 'body';
         currentChapter = { number: parseInt(text, 10) || (chapters.length + 1), blocks: [] };
@@ -201,6 +230,7 @@
 
       // ---- section headings ------------------------------------------------
       if (marker === 's' || marker === 's1' || marker === 's2' || marker === 'r') {
+        closeInlineSpans();
         flushBlock();
         if (currentChapter) {
           currentChapter.blocks.push(`<h3 class="section-heading">${escapeHtml(text)}</h3>`);
@@ -210,6 +240,7 @@
 
       // ---- paragraph / poetry markers --------------------------------------
       if (Object.prototype.hasOwnProperty.call(PARAGRAPH_CLASSES, marker)) {
+        closeInlineSpans();
         flushBlock();
         currentBlockTag = PARAGRAPH_CLASSES[marker];
         if (text) currentBuf += escapeHtml(text);
@@ -255,7 +286,7 @@
 
     flushChapter();
 
-    return { meta, introHtml, chapters };
+    return { meta, introHtml, introTitle, chapters };
   }
 
   global.USFM = { parse: parseUSFM };
